@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="asteroid"
+            type="com.udacity.asteroidradar.Asteroid" />
+        <variable
+            name="click"
+            type="com.udacity.asteroidradar.main.Click" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> click.onClick(asteroid)}"
+        android:padding="@dimen/space_mid">
+
+        <TextView
+            android:text="@{asteroid.codename}"
+            android:contentDescription="@{asteroid.codename}"
+            android:id="@+id/Asteroid_title"
+            android:textColor="@color/default_text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:text="@{asteroid.closeApproachDate}"
+            android:contentDescription="@{asteroid.closeApproachDate}"
+            android:textColor="@color/default_text_color"
+            android:id="@+id/Asteroid_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/Asteroid_title"
+            app:layout_constraintTop_toBottomOf="@id/Asteroid_title"/>
+
+        <ImageView
+            android:id="@+id/Asteroid_image"
+            statusIcon="@{asteroid.potentiallyHazardous}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/Asteroid_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/Asteroid_title"
+            android:contentDescription="@{asteroid.isPotentiallyHazardousDescription()}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
